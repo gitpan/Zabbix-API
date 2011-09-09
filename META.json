@@ -1,0 +1,89 @@
+{
+   "abstract" : "Access the JSON-RPC API of a Zabbix server",
+   "author" : [
+      "Fabrice Gabolde <fabrice.gabolde@uperto.com>",
+      "Marc Dequenes <marc.dequenes@uperto.com>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110580",
+   "license" : [
+      "gpl_1"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Zabbix-API",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "File::Spec" : 0,
+            "Test::Exception" : 0,
+            "Test::More" : 0,
+            "UNIVERSAL" : 0
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "JSON" : 0,
+            "LWP" : 0,
+            "Params::Validate" : 0,
+            "perl" : "5.01"
+         }
+      }
+   },
+   "provides" : {
+      "Zabbix::API" : {
+         "file" : "lib/Zabbix/API.pm",
+         "version" : "0.003"
+      },
+      "Zabbix::API::CRUDE" : {
+         "file" : "lib/Zabbix/API/CRUDE.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Graph" : {
+         "file" : "lib/Zabbix/API/Graph.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Host" : {
+         "file" : "lib/Zabbix/API/Host.pm",
+         "version" : 0
+      },
+      "Zabbix::API::HostGroup" : {
+         "file" : "lib/Zabbix/API/HostGroup.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Item" : {
+         "file" : "lib/Zabbix/API/Item.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Macro" : {
+         "file" : "lib/Zabbix/API/Macro.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Map" : {
+         "file" : "lib/Zabbix/API/Map.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Screen" : {
+         "file" : "lib/Zabbix/API/Screen.pm",
+         "version" : 0
+      },
+      "Zabbix::API::Utils" : {
+         "file" : "lib/Zabbix/API/Utils.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://www.gnu.org/licenses/gpl-3.0.txt"
+      ]
+   },
+   "version" : "0.003"
+}
