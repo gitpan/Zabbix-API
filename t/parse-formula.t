@@ -1,11 +1,11 @@
-use Test::More tests => 3;
+use Test::More tests => 5;
 
 use strict;
 use warnings;
 
-BEGIN { use_ok('Zabbix::API::Utils', qw/RE_FORMULA/); }
+BEGIN { use_ok('Zabbix::API::Utils', qw/RE_FORMULA RE_EXPRESSION/); }
 
-my $regexp = RE_FORMULA;
+my $re_formula = RE_FORMULA;
 
 my $string_simple = q{last("alpha")+first("beta")+average("gamma")};
 
@@ -48,16 +48,32 @@ is_deeply(\@match_complex,
               item_arg => 'eth2,clous' }, ],
           '... and a complex, correct formula is parsed');
 
+my $trigger_simple = '{www.zabbix.com:system.cpu.load[all,avg1].last(0)}>5';
+
+my $re_expression = RE_EXPRESSION;
+
+like($trigger_simple, $re_expression, '... and a simple, correct expression is parsed');
+
+$trigger_simple =~ m/$re_expression/;
+
+is_deeply(\%+,
+          { operator => '>',
+            operand => '{www.zabbix.com:system.cpu.load[all,avg1].last(0)}',
+            host => 'www.zabbix.com',
+            item => 'system.cpu.load',
+            item_arg => 'all,avg1',
+            function => 'last(0)', },
+          '... and the captures are correct');
+
 sub try_regexp {
 
     my $string = shift;
 
     my @matches;
 
-    while ($string =~ m/$regexp/g) {
+    while ($string =~ m/$re_formula/g) {
 
         my %foo = %+;
-
         push @matches, (\%foo);
 
     }

@@ -1,9 +1,11 @@
 use Test::More;
 use Test::Exception;
 use Data::Dumper;
-use UNIVERSAL;
 
 use Zabbix::API;
+
+use lib 't/lib';
+use Zabbix::API::TestUtils;
 
 if ($ENV{ZABBIX_SERVER}) {
 
@@ -17,18 +19,7 @@ if ($ENV{ZABBIX_SERVER}) {
 
 use_ok('Zabbix::API::Graph');
 
-my $zabber = Zabbix::API->new(server => $ENV{ZABBIX_SERVER},
-                              verbosity => $ENV{ZABBIX_VERBOSITY} || 0);
-
-eval { $zabber->login(user => 'api',
-                      password => 'quack') };
-
-if ($@) {
-
-    my $error = $@;
-    BAIL_OUT($error);
-
-}
+my $zabber = Zabbix::API::TestUtils::canonical_login;
 
 ok(my $default = $zabber->fetch('Graph', params => { search => { name => 'CPU Loads' } })->[0],
    '... and a graph known to exist can be fetched');

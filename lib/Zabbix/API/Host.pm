@@ -64,7 +64,7 @@ sub name {
 
     my $self = shift;
 
-    return $self->data->{host} || '???';
+    return $self->data->{host} || '';
 
 }
 
@@ -101,16 +101,21 @@ Zabbix::API::Host -- Zabbix host objects
 =head1 SYNOPSIS
 
   use Zabbix::API::Host;
-
-  my $host = $zabbix->fetch(...);
-
+  # fetch a single host by ID
+  my $host = $zabbix->fetch('Host', params => { filter => { hostid => 10105 } })->[0];
+  
+  # and delete it
   $host->delete;
+  
+  # fetch an item's host
+  my $item = $zabbix->fetch('Item', params => { filter => { itemid => 22379 } })->[0];
+  my $host_from_item = $item->host;
 
 =head1 DESCRIPTION
 
 Handles CRUD for Zabbix host objects.
 
-This is a subclass of C<Zabbix::API::CRUDE>.
+This is a subclass of C<Zabbix::API::CRUDE>; see there for inherited methods.
 
 =head1 METHODS
 
@@ -119,6 +124,11 @@ This is a subclass of C<Zabbix::API::CRUDE>.
 =item items()
 
 Accessor for the host's items.
+
+=item name()
+
+Accessor for the host's name (the "host" attribute); returns the empty string if
+no name is set, for instance if the host has not been created on the server yet.
 
 =back
 

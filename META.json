@@ -5,9 +5,9 @@
       "Marc Dequenes <marc.dequenes@uperto.com>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110580",
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.120351",
    "license" : [
-      "gpl_1"
+      "open_source"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -17,30 +17,33 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "File::Spec" : 0,
-            "Test::Exception" : 0,
-            "Test::More" : 0,
-            "UNIVERSAL" : 0
+            "File::Spec" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0"
          }
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.36_14"
          }
       },
       "runtime" : {
          "requires" : {
-            "JSON" : 0,
-            "LWP" : 0,
-            "Params::Validate" : 0,
-            "perl" : "5.01"
+            "JSON" : "0",
+            "LWP" : "0",
+            "Params::Validate" : "0",
+            "perl" : "5.010001"
          }
       }
    },
    "provides" : {
       "Zabbix::API" : {
          "file" : "lib/Zabbix/API.pm",
-         "version" : "0.003"
+         "version" : "0.004"
+      },
+      "Zabbix::API::Action" : {
+         "file" : "lib/Zabbix/API/Action.pm",
+         "version" : 0
       },
       "Zabbix::API::CRUDE" : {
          "file" : "lib/Zabbix/API/CRUDE.pm",
@@ -74,6 +77,10 @@
          "file" : "lib/Zabbix/API/Screen.pm",
          "version" : 0
       },
+      "Zabbix::API::Trigger" : {
+         "file" : "lib/Zabbix/API/Trigger.pm",
+         "version" : 0
+      },
       "Zabbix::API::Utils" : {
          "file" : "lib/Zabbix/API/Utils.pm",
          "version" : 0
@@ -83,7 +90,10 @@
    "resources" : {
       "license" : [
          "http://www.gnu.org/licenses/gpl-3.0.txt"
-      ]
+      ],
+      "repository" : {
+         "url" : "git://github.com/SFR-ZABBIX/Zabbix-API.git"
+      }
    },
-   "version" : "0.003"
+   "version" : "0.004"
 }

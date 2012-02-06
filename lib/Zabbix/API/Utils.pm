@@ -6,7 +6,7 @@ use 5.010;
 
 use parent 'Exporter';
 
-our @EXPORT_OK = qw(RE_FORMULA);
+our @EXPORT_OK = qw(RE_FORMULA RE_EXPRESSION);
 
 use constant RE_FORMULA =>
     qr/(?<function_call>\w+\(
@@ -23,7 +23,20 @@ use constant RE_FORMULA =>
          \g{function_args_quote}
        \))/x;
 
-# TODO: rendre les guillemets optionnels, support de plusieurs function_args
+use constant RE_EXPRESSION =>
+    qr/(?<operand>\{
+         ((?<host>[\w ._-]+)
+         :
+         (?<item>[\w.,_]+)
+         (?:\[
+           (?<item_arg>([\w\/ ]+)(,([\w\/ ]+))*)
+         \])?
+         \.
+         (?<function>\w+(?:\(.*?\))?))
+       \})
+       (?<operator>[\/*+<>#=&|-])
+         \d+(?:\.\d+)?
+       /x;
 
 1;
 __END__
@@ -90,6 +103,23 @@ represented here (fixme!).
 
 You'll have noticed that this makes use of the excellent "named capture buffers"
 feature, which means you need Perl 5.10 or higher.
+
+=item RE_EXPRESSION
+
+Like C<RE_FORMULA>, this matches against trigger expressions:
+
+  use Zabbix::Utils qw/RE_EXPRESSION/;
+
+  my $regexp = RE_EXPRESSION;
+
+  my $expression = '{www.zabbix.com:system.cpu.load[all,avg1].last(0)}>5';
+  $expression =~ m/$regexp/;
+
+  print Dumper(\%+);
+
+Which should output:
+
+  $VAR1 = {  };
 
 =back
 
