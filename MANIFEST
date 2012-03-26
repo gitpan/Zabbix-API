@@ -1,7 +1,6 @@
 Build.PL
 CHANGES
 examples/fetch-all-hosts.pl
-examples/fetch-one-host.pl
 lib/Zabbix/API.pm
 lib/Zabbix/API/Action.pm
 lib/Zabbix/API/CRUDE.pm
@@ -16,8 +15,6 @@ lib/Zabbix/API/Trigger.pm
 lib/Zabbix/API/Utils.pm
 LICENSE
 MANIFEST			This list of files
-META.json
-META.yml
 README
 t/actions.t
 t/connect-and-fetch.t
@@ -36,3 +33,5 @@ t/pod-coverage.t
 t/pod-syntax.t
 t/screens.t
 t/triggers.t
+META.yml
+META.json
