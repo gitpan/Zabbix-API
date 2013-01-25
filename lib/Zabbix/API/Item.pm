@@ -5,6 +5,8 @@ use warnings;
 use 5.010;
 use Carp;
 
+use Params::Validate qw/validate validate_with :types/;
+
 use parent qw/Exporter Zabbix::API::CRUDE/;
 
 use constant {
@@ -194,6 +196,44 @@ sub host {
 
 }
 
+sub history {
+
+    ## accessor for history
+
+    ## DOES NOT CACHE!
+
+    my $self = shift;
+
+    my %extra_parameters = validate_with(params => \@_,
+                                         spec => { time_from => { type => SCALAR, optional => 1 },
+                                                   time_till => { type => SCALAR, optional => 1 } },
+                                         allow_extra => 1);
+
+    my $history = $self->{root}->query(method => 'history.get',
+                                       params => { %extra_parameters,
+                                                   itemids => [ $self->id ],
+                                                   output => 'extend' });
+
+    return $history;
+
+}
+
+sub delay {
+
+    ## mutator for the item's polling period
+
+    my ($self, $value) = @_;
+
+    if ($value) {
+
+        $self->data->{delay} = $value;
+
+    }
+
+    return $self->data->{delay};
+
+}
+
 1;
 __END__
 =pod
@@ -255,6 +295,30 @@ Returns true if the item exists with this key on this hostid, false otherwise.
 Accessor for a local C<host> attribute, which it also happens to set from the
 server data if it isn't set already.  The host is an instance of
 C<Zabbix::API::Host>.
+
+=item history(PARAMS)
+
+Accessor for the item's history data.  Calling this method does not store the
+history data into the object, unlike other accessors.  History data is an AoH:
+
+  [ { itemid => ITEMID,
+      clock => UNIX_TIMESTAMP,
+      value => VALUE }, ... ]
+
+C<PARAMS> should be a hash containing arguments for the C<history.get> method
+(see here: L<http://www.zabbix.com/documentation/1.8/api/history/get>).  The
+time_from and time_till keys (with UNIX timestamps as values) are mandatory.
+The C<itemids> and C<output> parameters are already set and cannot be
+overwritten by the contents of C<PARAMS>.
+
+=item delay(NEW_DELAY)
+
+Mutator for the item's C<delay> value; that is, the polling period in
+seconds.  This is just a shortcut to set C<delay> in the C<data>
+hashref.  The method doesn't call C<pull()> or C<push()>, you need to
+do it manually.
+
+Returns the newly-set value.
 
 =back
 

@@ -5,7 +5,7 @@
       "Marc Dequenes <marc.dequenes@uperto.com>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112621",
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "open_source"
    ],
@@ -17,9 +17,9 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "File::Spec" : 0,
-            "Test::Exception" : 0,
-            "Test::More" : 0
+            "File::Spec" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0"
          }
       },
       "configure" : {
@@ -29,9 +29,9 @@
       },
       "runtime" : {
          "requires" : {
-            "JSON" : 0,
-            "LWP" : 0,
-            "Params::Validate" : 0,
+            "JSON" : "0",
+            "LWP" : "0",
+            "Params::Validate" : "0",
             "perl" : "5.010001"
          }
       }
@@ -39,7 +39,7 @@
    "provides" : {
       "Zabbix::API" : {
          "file" : "lib/Zabbix/API.pm",
-         "version" : "0.004"
+         "version" : "0.005"
       },
       "Zabbix::API::Action" : {
          "file" : "lib/Zabbix/API/Action.pm",
@@ -73,12 +73,28 @@
          "file" : "lib/Zabbix/API/Map.pm",
          "version" : 0
       },
+      "Zabbix::API::Proxy" : {
+         "file" : "lib/Zabbix/API/Proxy.pm",
+         "version" : 0
+      },
       "Zabbix::API::Screen" : {
          "file" : "lib/Zabbix/API/Screen.pm",
          "version" : 0
       },
+      "Zabbix::API::Template" : {
+         "file" : "lib/Zabbix/API/Template.pm",
+         "version" : 0
+      },
       "Zabbix::API::Trigger" : {
          "file" : "lib/Zabbix/API/Trigger.pm",
+         "version" : 0
+      },
+      "Zabbix::API::User" : {
+         "file" : "lib/Zabbix/API/User.pm",
+         "version" : 0
+      },
+      "Zabbix::API::UserGroup" : {
+         "file" : "lib/Zabbix/API/UserGroup.pm",
          "version" : 0
       },
       "Zabbix::API::Utils" : {
@@ -92,8 +108,8 @@
          "http://www.gnu.org/licenses/gpl-3.0.txt"
       ],
       "repository" : {
-         "url" : "git://github.com/SFR-ZABBIX/Zabbix-API.git"
+         "url" : "git://github.com/fgabolde/Zabbix-API.git"
       }
    },
-   "version" : "0.004"
+   "version" : "0.005"
 }

@@ -10,7 +10,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.36_14
 dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112621'
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: open_source
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,7 +19,7 @@ name: Zabbix-API
 provides:
   Zabbix::API:
     file: lib/Zabbix/API.pm
-    version: 0.004
+    version: 0.005
   Zabbix::API::Action:
     file: lib/Zabbix/API/Action.pm
     version: 0
@@ -44,11 +44,23 @@ provides:
   Zabbix::API::Map:
     file: lib/Zabbix/API/Map.pm
     version: 0
+  Zabbix::API::Proxy:
+    file: lib/Zabbix/API/Proxy.pm
+    version: 0
   Zabbix::API::Screen:
     file: lib/Zabbix/API/Screen.pm
     version: 0
+  Zabbix::API::Template:
+    file: lib/Zabbix/API/Template.pm
+    version: 0
   Zabbix::API::Trigger:
     file: lib/Zabbix/API/Trigger.pm
+    version: 0
+  Zabbix::API::User:
+    file: lib/Zabbix/API/User.pm
+    version: 0
+  Zabbix::API::UserGroup:
+    file: lib/Zabbix/API/UserGroup.pm
     version: 0
   Zabbix::API::Utils:
     file: lib/Zabbix/API/Utils.pm
@@ -60,5 +72,5 @@ requires:
   perl: 5.010001
 resources:
   license: http://www.gnu.org/licenses/gpl-3.0.txt
-  repository: git://github.com/SFR-ZABBIX/Zabbix-API.git
-version: 0.004
+  repository: git://github.com/fgabolde/Zabbix-API.git
+version: 0.005
