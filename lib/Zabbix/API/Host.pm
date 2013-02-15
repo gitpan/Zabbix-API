@@ -90,28 +90,6 @@ sub items {
 
 }
 
-sub proxy {
-
-    ## accessor for the host's proxy, if set
-
-    my ($self, $value) = @_;
-
-    if (defined $value) {
-
-        die 'Accessor proxy called as mutator';
-
-    } else {
-
-        return unless $self->data->{proxy_hostid}; # no proxy set
-
-        my $proxy = $self->{root}->fetch('Proxy', params => { proxyids => [ $self->data->{proxy_hostid} ] })->[0];
-        $self->{proxy} = $proxy;
-        return $self->{proxy};
-
-    }
-
-}
-
 1;
 __END__
 =pod

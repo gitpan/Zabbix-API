@@ -39,7 +39,7 @@
    "provides" : {
       "Zabbix::API" : {
          "file" : "lib/Zabbix/API.pm",
-         "version" : "0.006"
+         "version" : "0.007"
       },
       "Zabbix::API::Action" : {
          "file" : "lib/Zabbix/API/Action.pm",
@@ -111,5 +111,5 @@
          "url" : "git://github.com/fgabolde/Zabbix-API.git"
       }
    },
-   "version" : "0.006"
+   "version" : "0.007"
 }
