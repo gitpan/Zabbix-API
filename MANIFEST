@@ -10,6 +10,7 @@ lib/Zabbix/API/HostGroup.pm
 lib/Zabbix/API/Item.pm
 lib/Zabbix/API/Macro.pm
 lib/Zabbix/API/Map.pm
+lib/Zabbix/API/MediaType.pm
 lib/Zabbix/API/Proxy.pm
 lib/Zabbix/API/Screen.pm
 lib/Zabbix/API/Template.pm
@@ -19,6 +20,8 @@ lib/Zabbix/API/UserGroup.pm
 lib/Zabbix/API/Utils.pm
 LICENSE
 MANIFEST			This list of files
+META.json
+META.yml
 README
 t/actions.t
 t/connect-and-fetch.t
@@ -39,5 +42,3 @@ t/screens.t
 t/triggers.t
 t/usergroups.t
 t/users.t
-META.yml
-META.json

@@ -19,7 +19,7 @@ name: Zabbix-API
 provides:
   Zabbix::API:
     file: lib/Zabbix/API.pm
-    version: 0.007
+    version: 0.009
   Zabbix::API::Action:
     file: lib/Zabbix/API/Action.pm
     version: 0
@@ -43,6 +43,9 @@ provides:
     version: 0
   Zabbix::API::Map:
     file: lib/Zabbix/API/Map.pm
+    version: 0
+  Zabbix::API::MediaType:
+    file: lib/Zabbix/API/MediaType.pm
     version: 0
   Zabbix::API::Proxy:
     file: lib/Zabbix/API/Proxy.pm
@@ -73,4 +76,4 @@ requires:
 resources:
   license: http://www.gnu.org/licenses/gpl-3.0.txt
   repository: git://github.com/fgabolde/Zabbix-API.git
-version: 0.007
+version: 0.009

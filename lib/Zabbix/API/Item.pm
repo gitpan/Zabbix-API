@@ -167,6 +167,31 @@ sub name {
 
 }
 
+sub graphs {
+
+    ## accessor for this item's graphs
+
+    my ($self, $value) = @_;
+
+    if (defined $value) {
+
+        croak 'Accessor graphs called as mutator';
+
+    } else {
+
+        unless (exists ($self->{graphs})) {
+
+            my $graphs = $self->{root}->fetch('Graph', params => { itemids => [ $self->id ] });
+            $self->{graphs} = $graphs;
+
+        }
+
+    }
+
+    return $self->{graphs};
+
+}
+
 sub host {
 
     ## accessor for host
@@ -295,6 +320,11 @@ Returns true if the item exists with this key on this hostid, false otherwise.
 Accessor for a local C<host> attribute, which it also happens to set from the
 server data if it isn't set already.  The host is an instance of
 C<Zabbix::API::Host>.
+
+=item graphs()
+
+Like C<host()>, returning an arrayref of C<Zabbix::API::Graph>
+instances in which this item is involved.
 
 =item history(PARAMS)
 

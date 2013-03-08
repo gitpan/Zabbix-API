@@ -5,6 +5,7 @@ use warnings;
 use 5.010;
 use Carp;
 
+use Params::Validate qw/validate :types/;
 use parent qw/Zabbix::API::CRUDE/;
 
 sub new { 
@@ -86,6 +87,28 @@ sub items {
         return $self->data->{gitems};
 
     }
+
+}
+
+sub url {
+
+    ## return url for a graph
+
+    my $self = shift;
+
+    my $base_url = $self->{root}->{server};
+    $base_url =~ s{(?:/api_jsonrpc\.php)?$}{};
+
+    my %args = validate(@_, { width => { type => SCALAR, optional => 1, regex => qr/^\d+$/ },
+                              period => { type => SCALAR, optional => 1, regex => qr/^\d+$/ },
+                              start_time => { type => SCALAR, optional => 1, regex => qr/^\d{14}$/ } });
+
+    my $url = $base_url.'/chart2.php?graphid='.$self->id;
+    $url .= '&width='.$args{width} if $args{width};
+    $url .= '&period='.$args{period} if $args{period};
+    $url .= '&stime='.$args{start_time} if $args{start_time};
+
+    return $url;
 
 }
 
@@ -215,6 +238,29 @@ Thing).  Items that have been created this way will not be removed from the
 server if they are removed from the graph, however.
 
 Overriden from C<Zabbix::API::CRUDE>.
+
+=item url([width => WIDTH], [period => PERIOD], [start_time => START_TIME])
+
+This method returns a URL to an image on the Zabbix server.  The image
+of width C<WIDTH> will represent the current graph, plotted for data
+starting at C<START_TIME> (a UNIX timestamp) over C<PERIOD> seconds.
+It uses the current connection's host name to guess what path to base
+the URL on.
+
+All three parameters are optional.
+
+If the current user agent has cookies enabled, you can even fetch the
+image directly, since your API session is completely valid for all
+regular requests:
+
+  my $zabbix = Zabbix::API->new(server => ...,
+                                ua => LWP::UserAgent->new(cookie_jar => { file => 'cookie.jar' }),
+                                ...);
+  my $graph = $zabbix->fetch_single('Graph', ...);
+  my $response = $zabbix->{ua}->get($graph->url);
+  open my $image, '>', 'graph.png' or die $!;
+  $image->print($response->decoded_content);
+  $image->close;
 
 =back
 

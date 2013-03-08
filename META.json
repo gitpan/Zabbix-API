@@ -39,7 +39,7 @@
    "provides" : {
       "Zabbix::API" : {
          "file" : "lib/Zabbix/API.pm",
-         "version" : "0.007"
+         "version" : "0.009"
       },
       "Zabbix::API::Action" : {
          "file" : "lib/Zabbix/API/Action.pm",
@@ -71,6 +71,10 @@
       },
       "Zabbix::API::Map" : {
          "file" : "lib/Zabbix/API/Map.pm",
+         "version" : 0
+      },
+      "Zabbix::API::MediaType" : {
+         "file" : "lib/Zabbix/API/MediaType.pm",
          "version" : 0
       },
       "Zabbix::API::Proxy" : {
@@ -111,5 +115,5 @@
          "url" : "git://github.com/fgabolde/Zabbix-API.git"
       }
    },
-   "version" : "0.007"
+   "version" : "0.009"
 }
